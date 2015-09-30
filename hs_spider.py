@@ -120,4 +120,4 @@ class hs_spider(object):
 if __name__=='__main__':
     spider=hs_spider()
     spider.set_forum_id(50)
-    spider.getPages(2,3)
+    spider.getPages(38,50)
