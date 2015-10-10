@@ -7,6 +7,9 @@ import re
 import os
 
 
+__author__='byrEE'
+
+
 class hs_spider(object):
     def __init__(self):
         self.head_url='http://bbs.voc.com.cn/'
