@@ -6,19 +6,15 @@ from get_ua import get_ua
 import re
 import os
 
+__author__='byrEE'
 
-#from collections import deque
+
 class hs_spider(object):
     def __init__(self):
-        #start_url='http://bbs.voc.com.cn/forum-50-2.html'
         self.head_url='http://bbs.voc.com.cn/'
-        #self.forum='forum-'
-        #forum_id=
         self.pattern_topic=re.compile(r'(topic-6.*?html)')
         self.pattern_dl=re.compile(r'.*?/\w/.*?/\d+/\d+/(\d+-\d+.jpg)')
         self.pattern_img=re.compile(r'http://image.hnol.net.*?jpg')
-        #self.queue_topic=deque()
-        #self.queue_img=deque()
 
 
     def set_forum_id(self,id):
@@ -88,8 +84,6 @@ class hs_spider(object):
         self.mkdir(filepath)
         m=re.findall(self.pattern_dl,url_img)[0]
         file_n=str(2015)+'/'+m
-        #print(m)
-        #print(filename)
         with request.urlopen(url_img) as f:
             data=f.read()
             with open(file_n,'wb') as img:
@@ -98,15 +92,9 @@ class hs_spider(object):
 
     def parsePages(self,pageIndex):
         page_url=self.head_url+self.get_forum_url()+str(pageIndex)+'.html'
-        #soup_tmp=self.url_parse(page_url)
         m_topic=self.url_parse_topic(page_url)
         for ts in m_topic:
             ts_url=self.head_url+str(ts)
-            #print(ts_url)
-            #if ts_url=='http://bbs.voc.com.cn/topic-1352942-1-1.html':
-            #    pass
-            #else:
-            #soup_tmp2=self.url_parse(ts_url)
             m_img=self.url_parse_img(ts_url)
             print(m_img)
             for img in m_img:
